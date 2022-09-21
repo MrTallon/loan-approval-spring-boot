@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0fqlli7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <bpmn:process id="loan-approval" name="Loan approval" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="发起贷款申请" camunda:formKey="embedded:app:forms/loan-approval.html">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_1el4lmi</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1el4lmi" sourceRef="StartEvent_1" targetRef="Activity_0itxysy" />
+    <bpmn:userTask id="Activity_0itxysy" name="检查申请单" camunda:formKey="embedded:app:forms/loan-auth.html">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1el4lmi</bpmn:incoming>
+      <bpmn:outgoing>Flow_06kx5ve</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0dx2536" name="贷款处理结束">
+      <bpmn:incoming>Flow_0mjdpik</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_06kx5ve" sourceRef="Activity_0itxysy" targetRef="Activity_05mliyx" />
+    <bpmn:serviceTask id="Activity_05mliyx" name="发放贷款" camunda:class="org.example.loanapproval.OfferLoan">
+      <bpmn:incoming>Flow_06kx5ve</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mjdpik</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0mjdpik" sourceRef="Activity_05mliyx" targetRef="Event_0dx2536" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="loan-approval">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="164" y="142" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0revymj_di" bpmnElement="Activity_0itxysy">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xkphk3_di" bpmnElement="Activity_05mliyx">
+        <dc:Bounds x="460" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0dx2536_di" bpmnElement="Event_0dx2536">
+        <dc:Bounds x="642" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="627" y="142" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1el4lmi_di" bpmnElement="Flow_1el4lmi">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06kx5ve_di" bpmnElement="Flow_06kx5ve">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="460" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mjdpik_di" bpmnElement="Flow_0mjdpik">
+        <di:waypoint x="560" y="117" />
+        <di:waypoint x="642" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

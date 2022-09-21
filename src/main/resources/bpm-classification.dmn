@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_00hdiel" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="bmi-classification" name="BMI Classification">
+    <decisionTable id="DecisionTable_0hnlapj">
+      <input id="Input_1" label="BMI">
+        <inputExpression id="InputExpression_1" typeRef="double">
+          <text>bmi</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="result" name="result" typeRef="string" />
+      <rule id="DecisionRule_1pl9c2z">
+        <inputEntry id="UnaryTests_0cuiseb">
+          <text>&lt;=18.4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ohlmu4">
+          <text>"shou"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bq74y4">
+        <inputEntry id="UnaryTests_1fw8x0i">
+          <text>[18.5,23.9]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pvro1t">
+          <text>"normal"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0zxtvns">
+        <inputEntry id="UnaryTests_0uoujr1">
+          <text>[24.0,27.9]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fabmea">
+          <text>"pang"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ofo443">
+        <inputEntry id="UnaryTests_1eii40h">
+          <text>&gt;=28.0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1agr674">
+          <text>"falt"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="bmi-classification">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
